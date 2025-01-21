@@ -21,7 +21,7 @@ export default function Register() {
   return (
     <>
       <div className="w-[400px] my-20">
-        <Progress value={getProgressValue} />
+        <Progress value={getProgressValue()} />
       </div>
       <Card className="w-[350px]">
         <CardHeader>
@@ -30,11 +30,12 @@ export default function Register() {
             Deploy your new project in one-click.
           </CardDescription>
         </CardHeader>
-        <CardContent>{renderPage}</CardContent>
+        <CardContent>{renderPage()}</CardContent>
         <CardFooter className="flex justify-between">
           <Button onClick={prevPage} disabled={currentPage === 1}>
             Back
           </Button>
+
           {currentPage === 3 ? (
             <Button>Submit</Button>
           ) : (
