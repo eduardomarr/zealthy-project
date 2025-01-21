@@ -13,10 +13,18 @@ import {
 } from '@/components/ui/card';
 
 import { usePage } from '../hooks/usePage';
+import useFormStore from '../hooks/useFormStore';
 
 export default function Register() {
   const { currentPage, renderPage, nextPage, prevPage, getProgressValue } =
     usePage();
+
+  const { submitForm } = useFormStore();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    submitForm();
+  };
 
   return (
     <>
@@ -37,7 +45,7 @@ export default function Register() {
           </Button>
 
           {currentPage === 3 ? (
-            <Button>Submit</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
           ) : (
             <Button onClick={nextPage}>Next</Button>
           )}

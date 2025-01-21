@@ -21,7 +21,6 @@ const useFields = create<State & Action>((set, get) => ({
 
     const updatedPage2 = [...page2Fields];
 
-    // Verifica se o campo está na lista e remove ou adiciona
     if (updatedPage2.includes(newFields)) {
       updatedPage2.splice(updatedPage2.indexOf(newFields), 1);
     } else if (updatedPage2.length === 2) {
@@ -30,9 +29,8 @@ const useFields = create<State & Action>((set, get) => ({
       updatedPage2.push(newFields);
     }
 
-    // Verifica se a remoção deixou o array vazio
     if (updatedPage2.length === 0) {
-      updatedPage2.push(newFields); // Adiciona o campo de volta se o array ficar vazio
+      updatedPage2.push(newFields);
     }
 
     const updatedPage3 = page3Fields?.filter(
@@ -50,7 +48,6 @@ const useFields = create<State & Action>((set, get) => ({
 
     const updatedPage3 = [...page3Fields];
 
-    // Verifica se o campo está na lista e remove ou adiciona
     if (updatedPage3.includes(newFields)) {
       updatedPage3.splice(updatedPage3.indexOf(newFields), 1);
     } else if (updatedPage3.length === 2) {
@@ -59,9 +56,8 @@ const useFields = create<State & Action>((set, get) => ({
       updatedPage3.push(newFields);
     }
 
-    // Verifica se a remoção deixou o array vazio
     if (updatedPage3.length === 0) {
-      updatedPage3.push(newFields); // Adiciona o campo de volta se o array ficar vazio
+      updatedPage3.push(newFields);
     }
 
     const updatedPage2 = page2Fields.filter(
