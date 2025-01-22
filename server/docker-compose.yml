@@ -1,0 +1,21 @@
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: backend-zealthy-mysql
+    restart: unless-stopped
+    env_file:
+      - path: ./.env
+        required: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    expose:
+      - $MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db:
