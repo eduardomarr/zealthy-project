@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { user } = require('../models');
 
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { email, password, about, birthday, address } = req.body;
 
@@ -32,6 +32,21 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while fetching the users' });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const result = await user.findByPk(userId);
+    if (!result) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+    result.destroy();
+    res.status(200).send({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).send({ message: 'Failed to delete user' });
   }
 });
 

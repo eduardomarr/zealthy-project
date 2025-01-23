@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/ui/header';
 
+import QueryProviderWrapper from '@/config/QueryClientProvider';
+
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist-sans',
@@ -31,7 +33,7 @@ export default function RootLayout({
       >
         <main className="flex-1 flex flex-col items-center h-screen">
           <Header />
-          {children}
+          <QueryProviderWrapper>{children}</QueryProviderWrapper>
         </main>
       </body>
     </html>

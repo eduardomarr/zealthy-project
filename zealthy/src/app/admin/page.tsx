@@ -35,7 +35,7 @@ export default function Admin() {
           <div className="flex h-5 items-center justify-between space-x-4 text-sm">
             <div className="font-semibold">Page 2</div>
 
-            {(['About', 'Birthday', 'Address'] as Fields[]).map((field) => (
+            {(['about', 'birthday', 'address'] as Fields[]).map((field) => (
               <>
                 <Separator orientation="vertical" />
                 <div key={field} className="flex items-center gap-4">
@@ -54,7 +54,7 @@ export default function Admin() {
           <div className="flex h-5 items-center justify-between space-x-4 text-sm">
             <div className="font-semibold">Page 3</div>
 
-            {(['About', 'Birthday', 'Address'] as Fields[]).map((field) => (
+            {(['about', 'birthday', 'address'] as Fields[]).map((field) => (
               <>
                 <Separator orientation="vertical" />
                 <div key={field} className="flex items-center gap-4">

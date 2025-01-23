@@ -12,18 +12,26 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
+import useFormStore, { User } from '../hooks/useFormStore';
 import { usePage } from '../hooks/usePage';
-import useFormStore from '../hooks/useFormStore';
+import { useMutation } from '@tanstack/react-query';
+import { createUser } from '../services/users';
 
 export default function Register() {
   const { currentPage, renderPage, nextPage, prevPage, getProgressValue } =
     usePage();
 
-  const { submitForm } = useFormStore();
+  const { getForm } = useFormStore();
+
+  const mutation = useMutation({
+    mutationFn: (user: User) => {
+      return createUser(user);
+    },
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitForm();
+    mutation.mutate(getForm());
   };
 
   return (

@@ -1,14 +1,9 @@
 import useFormStore from '@/app/hooks/useFormStore';
 import { Input } from './input';
 import { Label } from './label';
-import { useEffect } from 'react';
 
 export default function Page1() {
   const { formData, updateField } = useFormStore();
-
-  useEffect(() => {
-    console.log('formData', formData);
-  }, [formData]);
 
   return (
     <form>

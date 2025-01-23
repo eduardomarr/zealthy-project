@@ -2,6 +2,15 @@
 
 import { create } from 'zustand';
 
+export type User = {
+  id: number;
+  email: string;
+  password: string;
+  about?: string;
+  birthday?: string;
+  address?: string;
+};
+
 export type FormData = {
   [key: string]: string;
 };
@@ -9,7 +18,7 @@ export type FormData = {
 type State = {
   formData: FormData;
   updateField: (key: keyof FormData, value: string) => void;
-  submitForm: () => void;
+  getForm: () => User;
 };
 
 const useFormStore = create<State>((set, get) => ({
@@ -21,28 +30,10 @@ const useFormStore = create<State>((set, get) => ({
         [key]: value,
       },
     })),
-  submitForm: async () => {
+  getForm: () => {
     const { formData } = get();
 
-    console.log('Enviando dados:', formData);
-    // try {
-    //   const response = await fetch('/api/formSubmit', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error('Erro ao enviar os dados');
-    //   }
-
-    //   const data = await response.json();
-    //   console.log('Dados enviados com sucesso:', data);
-    // } catch (error) {
-    //   console.error('Erro ao enviar o formulário:', error);
-    // }
+    return formData as User;
   },
 }));
 
