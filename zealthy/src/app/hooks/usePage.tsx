@@ -15,6 +15,10 @@ export function usePage() {
     setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
   };
 
+  const setPage = (page: number) => {
+    setCurrentPage(page);
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 1:
@@ -44,5 +48,6 @@ export function usePage() {
     nextPage,
     prevPage,
     getProgressValue,
+    setPage,
   };
 }

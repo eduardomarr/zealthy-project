@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type Fields = 'about' | 'birthday' | 'address';
+export type Fields = 'About' | 'Birthday' | 'Address';
 
 type State = {
   page2Fields: Fields[];
@@ -13,8 +13,8 @@ type Action = {
 };
 
 const useFields = create<State & Action>((set, get) => ({
-  page2Fields: ['about'],
-  page3Fields: ['birthday', 'address'],
+  page2Fields: ['About'],
+  page3Fields: ['Birthday', 'Address'],
 
   updatePage2Fields: (newFields) => {
     const { page2Fields, page3Fields } = get();

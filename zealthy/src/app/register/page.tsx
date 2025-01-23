@@ -16,12 +16,21 @@ import useFormStore, { User } from '../hooks/useFormStore';
 import { usePage } from '../hooks/usePage';
 import { useMutation } from '@tanstack/react-query';
 import { createUser } from '../services/users';
+import { useMemo } from 'react';
 
 export default function Register() {
-  const { currentPage, renderPage, nextPage, prevPage, getProgressValue } =
-    usePage();
+  const {
+    currentPage,
+    renderPage,
+    nextPage,
+    prevPage,
+    getProgressValue,
+    setPage,
+  } = usePage();
 
-  const { getForm } = useFormStore();
+  const { getForm, clearForm } = useFormStore();
+
+  const { email, password } = getForm();
 
   const mutation = useMutation({
     mutationFn: (user: User) => {
@@ -30,9 +39,19 @@ export default function Register() {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    mutation.mutate(getForm());
+    try {
+      e.preventDefault();
+      mutation.mutate(getForm());
+      clearForm();
+      setPage(1);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
+
+  const isDisabled = useMemo(() => {
+    return !email || !password;
+  }, [email, password]);
 
   return (
     <>
@@ -41,10 +60,8 @@ export default function Register() {
       </div>
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Create project</CardTitle>
-          <CardDescription>
-            Deploy your new project in one-click.
-          </CardDescription>
+          <CardTitle>Register</CardTitle>
+          <CardDescription>register a user with custom fields.</CardDescription>
         </CardHeader>
         <CardContent>{renderPage()}</CardContent>
         <CardFooter className="flex justify-between">
@@ -53,7 +70,9 @@ export default function Register() {
           </Button>
 
           {currentPage === 3 ? (
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button onClick={handleSubmit} disabled={isDisabled}>
+              Submit
+            </Button>
           ) : (
             <Button onClick={nextPage}>Next</Button>
           )}

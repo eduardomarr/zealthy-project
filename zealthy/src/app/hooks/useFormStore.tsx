@@ -19,6 +19,7 @@ type State = {
   formData: FormData;
   updateField: (key: keyof FormData, value: string) => void;
   getForm: () => User;
+  clearForm: () => void;
 };
 
 const useFormStore = create<State>((set, get) => ({
@@ -33,8 +34,12 @@ const useFormStore = create<State>((set, get) => ({
   getForm: () => {
     const { formData } = get();
 
-    return formData as User;
+    return formData as unknown as User;
   },
+  clearForm: () =>
+    set({
+      formData: {},
+    }),
 }));
 
 export default useFormStore;

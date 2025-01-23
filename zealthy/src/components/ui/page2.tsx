@@ -14,9 +14,11 @@ export default function Page2() {
           <div key={field} className="flex flex-col space-y-1.5">
             <Label htmlFor={field}>{field}</Label>
             <Input
-              id={field}
-              value={formData[field] || ''}
-              onChange={(e) => updateField(field, e.target.value)}
+              id={field.toLowerCase()}
+              value={formData[field.toLowerCase()] || ''}
+              onChange={(e) => {
+                updateField(field.toLowerCase(), e.target.value);
+              }}
             />
           </div>
         ))}

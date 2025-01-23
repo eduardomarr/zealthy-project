@@ -10,17 +10,10 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import useFields, { Fields } from '../hooks/useFields';
-// import { usePageLeave } from '../hooks/usePageLeave';
 
 export default function Admin() {
   const { page2Fields, page3Fields, updatePage2Fields, updatePage3Fields } =
     useFields();
-
-  // usePageLeave('/admin', () => {
-  //   if (page2Fields.length === 0 && page3Fields.length === 0) {
-  //     alert('Please select at least one field for each page');
-  //   }
-  // });
 
   return (
     <div className="mt-20">
@@ -35,7 +28,7 @@ export default function Admin() {
           <div className="flex h-5 items-center justify-between space-x-4 text-sm">
             <div className="font-semibold">Page 2</div>
 
-            {(['about', 'birthday', 'address'] as Fields[]).map((field) => (
+            {(['About', 'Birthday', 'Address'] as Fields[]).map((field) => (
               <>
                 <Separator orientation="vertical" />
                 <div key={field} className="flex items-center gap-4">
@@ -54,7 +47,7 @@ export default function Admin() {
           <div className="flex h-5 items-center justify-between space-x-4 text-sm">
             <div className="font-semibold">Page 3</div>
 
-            {(['about', 'birthday', 'address'] as Fields[]).map((field) => (
+            {(['About', 'Birthday', 'Address'] as Fields[]).map((field) => (
               <>
                 <Separator orientation="vertical" />
                 <div key={field} className="flex items-center gap-4">
